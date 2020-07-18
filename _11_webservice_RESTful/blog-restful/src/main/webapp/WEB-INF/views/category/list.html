@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List</title>
+    <th:block th:replace="frag::head">
+    </th:block>
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+        <th:block th:insert="frag::side-menu">
+        </th:block>
+        <div id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <h1 class="h3 mb-2 text-gray-800">Product</h1>
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <a th:href="@{/category/create}">Create Category</a>
+                                <table class="table table-bordered" id="dataTable"
+                                       width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <th:block th:each="category: ${categories}">
+                                        <!--/*@thymesVar id="category" type="com.blog.model.Category"*/-->
+                                        <tr>
+                                            <td>
+                                                <a th:href="@{/category/edit/__${category.id}__}" th:text="${category.name}"></a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/category/remove/__${category.id}__}" th:text="Remove"></a>
+                                            </td>
+                                        </tr>
+                                    </th:block>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="frag::script">
+    </th:block>
+</body>
+</html>

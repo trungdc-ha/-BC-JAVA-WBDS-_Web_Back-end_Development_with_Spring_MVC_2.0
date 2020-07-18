@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+<a th:href="@{/logout}">Logout</a>
+<h1 class="title">List Category</h1>
+    <div sec:authorize="hasRole('ADMIN')">
+        <p><a href="/admincreate-category">Create New Category</a> </p>
+    </div>
+<p><a href="/userlist">View All Blog</a> </p>
+<div>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <div sec:authorize="hasRole('ADMIN')"><td>Edit</td>
+                <td>Remove</td></div>
+        </tr>
+        <th:block th:each="category : ${categories}">
+            <tr>
+                <td><a th:text="${category.name}" th:href="@{/userview-category/__${category.id}__}"></a></td>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <td><a th:href="@{/adminedit-category/__${category.id}__}">Edit</a> </td>
+                    <td><a th:href="@{/adminremove-category/__${category.id}__}">Remove</a> </td>
+                </div>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

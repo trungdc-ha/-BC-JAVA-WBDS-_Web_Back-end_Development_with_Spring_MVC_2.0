@@ -1,0 +1,118 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{css/dashboard.css}" />
+    <script th:src="@{js/jquery-3.5.0.min.js}"></script>
+    <script th:src="@{js/bootstrap.min.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Furama</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span data-feather="users"></span>
+                            Contacts <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file"></span>
+                            Orders
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="shopping-cart"></span>
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="bar-chart-2"></span>
+                            Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="layers"></span>
+                            Integrations
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <h2 class="mb-3">Add contact</h2>
+            <form class="needs-validation" novalidate="" th:action="@{/add_contact}" method="post" th:object="${contact}">
+                <div class=" mb-3">
+                    <label for="employeeId">Employee Id</label>
+                    <input type="text" class="form-control" id="employeeId" th:field="*{employeeId}" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                        Employee Id is required.
+                    </div>
+                </div>
+
+                <div class=" mb-3">
+                    <label for="customerId">Customer Id</label>
+                    <input type="text" class="form-control" id="customerId" th:field="*{customerId}" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                        Customer Id is required.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="startDate">Start date</label>
+                    <input type="date" class="form-control" id="startDate" th:field="*{startDate}" required="">
+                    <div class="invalid-feedback" style="width: 100%;">
+                        Start date is required.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="endDate">End date</label>
+                    <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required="">
+                    <div class="invalid-feedback" style="width: 100%;">
+                        End date is required.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="deposit">Deposit</label>
+                    <input type="text" class="form-control" id="deposit" th:field="*{deposit}" placeholder="123456789" required="" >
+                    <p th:if="${#fields.hasErrors('deposit')}" th:errors="*{deposit}" class="text-danger"></p>
+                    <div class="invalid-feedback">
+                        Please enter your Deposit
+                    </div>
+                </div>
+
+                <div class=" mb-3">
+                    <label for="serviceId">Service Id</label>
+                    <input type="text" class="form-control" id="serviceId" th:field="*{serviceId}" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                        Service Id is required.
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Add new contact</button>
+            </form>
+        </main>
+    </div>
+</div>
+
+</body>
+</html>

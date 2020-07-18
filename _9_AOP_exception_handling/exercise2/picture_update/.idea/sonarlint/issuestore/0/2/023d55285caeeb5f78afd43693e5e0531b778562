@@ -1,0 +1,4 @@
+
+nsquid:UselessImportCheck"CRemove this unused import 'com.codegym.repository.ImageRepository'.(ΊΒ¤π8€Οτή.
+¤%squid:RedundantThrowsDeclarationCheck."sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(―¶…
+[squid:S3878_"8Remove this array creation and simply pass the elements.(ψ±αξÿÿÿÿÿ8ƒΦΦ­.

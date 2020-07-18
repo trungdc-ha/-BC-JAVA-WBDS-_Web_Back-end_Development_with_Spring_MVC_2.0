@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit BLog</title>
+</head>
+<body>
+<h1 class="title">Edit Blog</h1>
+<p><a href="/userlist">Back to list blog</a></p>
+<th:block th:if="${message}">
+    <p th:text="${message}">
+</th:block>
+<form th:action="@{/adminupdate-blog}" th:object="${blog}" method="post">
+    <table border="1">
+        <td><input type="hidden" th:field="*{id}"></td>
+        <tr>
+            <td>Author: </td>
+            <td><input type="text" th:field="*{people}"></td>
+        </tr>
+        <tr>
+            <td>Title: </td>
+            <td><input  type="text" th:field="*{title}"></td>
+        </tr>
+        <tr>
+            <td>Summary: </td>
+            <td><input type="text"  th:field="*{summary}"></td>
+        </tr>
+        <tr>
+            <td>Content: </td>
+            <td><input  type="text" th:field="*{content}"></td>
+        </tr>
+        <tr>
+            <td>Date: </td>
+            <td><input type="text"  th:field="*{date}"></td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td>
+                <select name="category">
+                    <option th:each="c : ${categories}"
+                            th:value="${c.id}"
+                            th:text="${c.name}"
+                            th:selected="(${id} == *{category.id})"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

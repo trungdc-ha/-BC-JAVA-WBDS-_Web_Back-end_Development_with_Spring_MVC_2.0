@@ -1,0 +1,11 @@
+Generate API Key
+Your API key for dangchitrungha@gmail.com is:
+
+xWyH98hhugYYy37zuz5M2RlNcccCo9mdMJbh3iyT
+You can start using this key to make web service requests. Simply pass your key in the URL when making a web request. Here's an example:
+
+https://api.nasa.gov/planetary/apod?api_key=xWyH98hhugYYy37zuz5M2RlNcccCo9mdMJbh3iyT
+For additional support, please contact us. When contacting us, please tell us what API you're accessing and provide the following account details so we can quickly find you:
+
+Account Email: dangchitrungha@gmail.com 
+Account ID: 35668957-8d12-4e32-86d2-aa8e836ab3ae

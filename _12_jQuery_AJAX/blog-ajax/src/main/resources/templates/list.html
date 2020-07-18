@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogs</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<a href="/create-blog">Create new blog</a>
+<h1>Blogs</h1>
+<form method="post" action="/" id="searchForm" myAttribute="${param.search}">
+    <label>Tìm kiếm</label>
+    <input type="text" name="search" id="search">
+    <input type="submit" value="Search">
+</form>
+<div id="result">
+
+</div>
+<table border="1">
+    <tr>
+        <th>Name Blog</th>
+        <th>Summary</th>
+        <th>View Full Blog</th>
+        <th>Category</th>
+        <th>Update Blog</th>
+        <th>Delete Blog</th>
+    </tr>
+    <th:block th:each="blog : ${blogs}">
+        <tr>
+            <td th:text="${blog.nameBlog}"></td>
+            <td th:text="${blog.quickView}"></td>
+            <td th:text="${blog.category.nameCategory}"></td>
+            <td><a th:href="@{/view-blog/__${blog.id}__}">View</a></td>
+            <td><a th:href="@{/edit-blog/__${blog.id}__}">Update</a></td>
+            <td><a th:href="@{/delete-blog/__${blog.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<a href="/category"><h3>Category List</h3></a>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#searchForm').submit(function (event) {
+            let search = {};
+            search["blogName"] = $('#search').val();
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type : "POST",
+                data: JSON.stringify(search),
+                url: "/",
+                success: function(blogs) {
+                    let respContent = "";
+                    respContent += "<span class='success'>Blogs search: [";
+                    for (var item of blogs){
+                        respContent += item.nameBlog + " : ";
+                        respContent += item.quickView + " : " ;
+                        respContent += item.content + "]</span>"
+                        respContent += "<br/>";
+                    }
+                    $("#result").html(respContent);
+
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>
+</html>

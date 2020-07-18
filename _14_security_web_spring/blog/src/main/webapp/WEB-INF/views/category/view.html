@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+<a th:href="@{/logout}">Logout</a>
+<p><h1 class="title">View Category: <span th:text="${category.name}"></span> </h1> </p>
+<p><a href="/usercategory">Back to list category</a> </p>
+<table border="1">
+    <tr>
+        <td>Title </td>
+        <td>Author </td>
+        <td>Summary </td>
+        <td>Date </td>
+        <td>Category</td>
+    </tr>
+    <th:block th:each="blog : ${blogs}">
+        <tr>
+            <td><a th:href="@{/userread/__${blog.id}__}"  th:text="${blog.title}"></a></td>
+            <td th:text="${blog.people}"></td>
+            <td th:text="${blog.summary}"></td>
+            <td th:text="${blog.date}"></td>
+            <td><a th:text="${blog.category.name}" th:href="@{/userview-category/__${blog.category.id}__}"></a></td>
+            <div sec:authorize="hasRole('ADMIN')">
+                <td><a th:href="@{/adminedit/__${blog.id}__}">Edit</a> </td>
+                <td><a th:href="@{/adminremove/__${blog.id}__}">Delete</a> </td>
+                <td><a th:href="@{/userread/__${blog.id}__}">Read More...</a> </td>
+            </div>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
